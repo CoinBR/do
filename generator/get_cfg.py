@@ -45,20 +45,20 @@ def get_docker_img_str(svc):
 
 
 
-def get_cmd_n_pacman(s):
+def get_distro(s):
     my_suffix = s.split(':')[1].split('-')[1]
     for distro_name, distro in DISTROS.items():
         distro_keywords = [distro_name] + distro['versions']
         for kw in distro_keywords:
             if kw in my_suffix:
-                    return distro['cmd'], distro['pacman']
+                    return distro
 
     raise ValueError("[ERROR] Theres no Docker image with the suffix \"{}\" registered in our dict/JSON/database".format(my_suffix))
  
 def get_lang(s):
     my_img_name = s.split(':')[0] 
-    for lang, data in LANGS.items():
-        for img_name in data['images']:
+    for langname, lang in LANGS.items():
+        for img_name in lang['images']:
             if img_name in my_img_name:
                 return lang
 
@@ -72,19 +72,26 @@ def get_all(svc):
     def in_extras():
         for img_name in EXTRA_IMGS.keys():
             if img_name in my_img_name:
-                lang = EXTRA_IMGS[img_name]['lang']
+                lang_name = EXTRA_IMGS[img_name]['lang']
+                lang = LANGS[lang_name]
 
                 distro_name = EXTRA_IMGS[img_name]['distro']
                 distro = DISTROS[distro_name]
-                cmd, pacman = distro['cmd'], distro['pacman']
-
-                return cmd, pacman, lang
+                
+                return distro, lang
         return False
 
-    if not in_extras():
-        cmd, pacman = get_cmd_n_pacman(my_img_name)
-        lang = get_lang(my_img_name)
-        return cmd, pacman, lang 
+    extra = in_extras()
+
+    if extra:
+        distro, lang = extra
+    else:
+        distro, lang = get_distro(my_img_name), get_lang(my_img_name)
+
+    return {'distro': distro,
+            'lang': lang,
+            }
+
 
 
 def get_cfg():
