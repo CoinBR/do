@@ -21,10 +21,20 @@ EXTRA_IMGS = {
 
 LANGS = {
         'python': {
-            'images': ['python'],
+            'images': ['python', ],
+            'extensions': ['py'],
             'test_cmd': 'pytest',
-            }
+            },
+
+        'node': {
+            'images': ['node', ],
+            'extensions': ['js', 'jsx', 'ts'],
+            'test_cmd': 'npm test',
+            },
         }
+
+
+
 
 DISTROS = {
         'debian': {
