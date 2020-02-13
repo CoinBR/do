@@ -70,5 +70,3 @@ def get_cfg():
         svc_name = next(iter(yml['services']))
         svc = yml['services'][svc_name]
         return get_all(svc_name, svc)
-
-print(get_cfg())
