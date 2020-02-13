@@ -1,40 +1,8 @@
 import yaml
 
-from directories import DIRS
+from db import *
 
 
-DIRS['scripts'], DO_DIR, DIRS['project']
-
-# Docker imgs that don't follow a name convention
-# that would enable this script to determine 
-# the imgs' lang and linux distro
-EXTRA_IMGS = {
-        'rabbitmq:3': {
-            'lang': None,
-            'distro': 'debian'
-            },
-        }
-
-LANGS = {
-        'python': {
-            'images': ['python'],
-            'test_cmd': ''
-            }
-        }
-
-DISTROS = {
-        'debian': {
-            'versions': ['buster', 'stretch', 'jessie', 'wheezy'],
-            'cmd': 'bash',
-            'pacman': 'apt-get update && apt-get install -y '
-            },
-
-        'alpine': {
-            'versions': ['alpine'],
-            'cmd': 'sh',
-            'pacman': 'apk update && apk add --allow-untrusted '
-            }
-        }
 
 def get_docker_img_str(svc):
     if ('image' in svc.keys()):
@@ -65,7 +33,7 @@ def get_lang(s):
     raise ValueError("[ERROR] Docker image \"{}\" not registered in our dict/JSON/database".format(my_img_name))
 
 
-def get_all(svc):
+def get_all(svc_name, svc):
 
     my_img_name = get_docker_img_str(svc)
 
@@ -90,9 +58,8 @@ def get_all(svc):
 
     return {'distro': distro,
             'lang': lang,
-            'service': svc
+            'service': svc_name,
             }
-
 
 
 def get_cfg():
@@ -102,5 +69,6 @@ def get_cfg():
         yml = yaml.load(file, Loader=yaml.FullLoader)
         svc_name = next(iter(yml['services']))
         svc = yml['services'][svc_name]
-        return get_all(svc)
+        return get_all(svc_name, svc)
 
+print(get_cfg())
