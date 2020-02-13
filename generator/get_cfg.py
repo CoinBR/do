@@ -1,9 +1,9 @@
-import inspect, os
 import yaml
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-DO_DIR = os.path.dirname(SCRIPT_DIR)
-PROJ_DIR = os.path.dirname(DO_DIR)
+from directories import DIRS
+
+
+DIRS['scripts'], DO_DIR, DIRS['project']
 
 # Docker imgs that don't follow a name convention
 # that would enable this script to determine 
@@ -40,7 +40,7 @@ def get_docker_img_str(svc):
     if ('image' in svc.keys()):
         return svc['image'] 
     
-    with open(r'{}/Dockerfile'.format(PROJ_DIR)) as f:
+    with open(r'{}/Dockerfile'.format(DIRS['project'])) as f:
         return f.readline()[5:]
 
 
@@ -90,12 +90,13 @@ def get_all(svc):
 
     return {'distro': distro,
             'lang': lang,
+            'service': svc
             }
 
 
 
 def get_cfg():
-    with open(r'{}/docker-compose.yml'.format(PROJ_DIR)) as file:
+    with open(r'{}/docker-compose.yml'.format(DIRS['project'])) as file:
         # The FullLoader parameter handles the conversion from YAML
         # scalar values to Python the dictionary format
         yml = yaml.load(file, Loader=yaml.FullLoader)
@@ -103,4 +104,3 @@ def get_cfg():
         svc = yml['services'][svc_name]
         return get_all(svc)
 
-print(get_cfg())
