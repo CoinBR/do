@@ -63,10 +63,19 @@ def get_all(svc_name, svc):
 
 
 def get_cfg():
-    with open(r'{}/docker-compose.yml'.format(DIRS['project'])) as file:
-        # The FullLoader parameter handles the conversion from YAML
-        # scalar values to Python the dictionary format
-        yml = yaml.load(file, Loader=yaml.FullLoader)
-        svc_name = next(iter(yml['services']))
-        svc = yml['services'][svc_name]
-        return get_all(svc_name, svc)
+    try:
+        with open(r'{}/docker-compose.yml'.format(DIRS['project'])) as file:
+            # The FullLoader parameter handles the conversion from YAML
+            # scalar values to Python the dictionary format
+            yml = yaml.load(file, Loader=yaml.FullLoader)
+            svc_name = next(iter(yml['services']))
+            svc = yml['services'][svc_name]
+            return get_all(svc_name, svc)
+    except FileNotFoundError:
+        # if it has no compose file, returns a generic distro/lang/service-name
+        return {'distro': DISTROS[EXTRA_IMGS['hello-world']['distro']],
+                'lang': LANGS[EXTRA_IMGS['hello-world']['lang']],
+                'service': '',
+                }
+
+

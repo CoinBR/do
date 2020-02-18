@@ -1,0 +1,9 @@
+from db import DIRS, DISTROS, LANGS
+from get_cfg import get_cfg
+
+CFG = get_cfg()
+
+
+
+
+

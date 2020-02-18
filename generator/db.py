@@ -13,13 +13,31 @@ DIRS['templates-prefixes'] = DIRS['templates'] + '/prefixes'
 # that would enable this script to determine 
 # the imgs' lang and linux distro
 EXTRA_IMGS = {
+        # Generic/Hollow image, used when there's not docker-compose file
+        # Used when we the project is only a master project
+        # that only wants to run its submodules
+        'hello-world': {
+            'lang': '',
+            'distro': 'debian',
+            },
+
+
         'rabbitmq:3': {
-            'lang': 'python',
+            'lang': '',
             'distro': 'debian'
             },
         }
 
 LANGS = {
+
+        # Used when the image will not execute any custom script in any language
+        # Or when its a hollow/parent-only project
+        '':  {
+            'images': [],
+            'extensions': [],
+            'test_cmd': '',
+            },
+
         'python': {
             'images': ['python', ],
             'extensions': ['py'],
@@ -31,6 +49,7 @@ LANGS = {
             'extensions': ['js', 'jsx', 'ts'],
             'test_cmd': 'npm test',
             },
+
         }
 
 
