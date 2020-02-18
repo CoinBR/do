@@ -14,7 +14,7 @@ DIRS['templates-prefixes'] = DIRS['templates'] + '/prefixes'
 # the imgs' lang and linux distro
 EXTRA_IMGS = {
         'rabbitmq:3': {
-            'lang': None,
+            'lang': 'python',
             'distro': 'debian'
             },
         }
