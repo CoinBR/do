@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+
 import yaml
 
-from db import *
+if __package__:
+    from generator.db import *
+else:
+    from db import *
 
 
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import re
 from os.path import isfile, join
@@ -45,7 +47,6 @@ def join_filename_extension(lst):
     return '{}.{}'.format(lst[0], lst[1]) 
 
 def is_valid_fn(filename):
-    return True
     return not (len(try_split_filename_extension(filename)) != 2 
                 or filename[0] == '.'
                 or filename[-4:] == '.swp')

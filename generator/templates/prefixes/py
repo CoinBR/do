@@ -1,7 +1,17 @@
-from db import DIRS, DISTROS, LANGS
-from get_cfg import get_cfg
+#!/usr/bin/env python3
+
+from generator.get_cfg import get_cfg, DIRS, DISTROS, LANGS
 
 CFG = get_cfg()
+
+def list_files(directory):
+    return [f for f in os.listdir(directory) if isfile(join(directory, f))]
+
+def list_files(directory):
+    return [f for f in os.listdir(directory) if isdir(join(directory, f))]
+
+
+
 
 
 
