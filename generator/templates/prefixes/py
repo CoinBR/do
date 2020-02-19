@@ -16,7 +16,7 @@ def list_dirs(directory):
     return [f for f in os.listdir(directory) if os.path.isdir(join(directory, f))]
 
 
-def run(cmdz, args=''):
+def run(cmdz, args='', root_dir : str=DIRS['project']):
 
     if not isinstance(cmdz, str):
         dq(run(cmd, args) for cmd in cmdz)
@@ -25,7 +25,7 @@ def run(cmdz, args=''):
         fixed_args = ' '.join(args) if len(args) else ''
         return launch(cmdz, fixed_args)
 
-    run_cmd = 'cd {} && {} {}'.format(DIRS['project'], cmdz, args)
+    run_cmd = 'cd {} && {} {}'.format(root_dir, cmdz, args)
     print(run_cmd)
     os.system(run_cmd)
     print('\n' + 15 * '*' + '\n')
