@@ -16,7 +16,7 @@ def list_dirs(directory):
     return [f for f in os.listdir(directory) if os.path.isdir(join(directory, f))]
 
 
-def launch(cmd: str, args=''):
+def run(cmd: str, args=''):
 
     if not isinstance(args, str):
         fixed_args = ' '.join(flags)) if len(flags) else ''
@@ -24,7 +24,6 @@ def launch(cmd: str, args=''):
 
     os.system('cd {} && {} {}'.format(DIRS['project'], cmd, flags))
     
-
 def try_launch_in_submodules(scriptz_pathz):
 
     def launch(proj_dir, scripts_paths):

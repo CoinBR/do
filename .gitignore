@@ -1,6 +1,6 @@
 credentials
 
-.swp # vim
+*.swp # vim
 
 # Generated Files
 /build
