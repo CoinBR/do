@@ -19,7 +19,7 @@ def list_dirs(directory):
 def run(cmd: str, args=''):
 
     if not isinstance(args, str):
-        fixed_args = ' '.join(flags) if len(flags) else ''
+        fixed_args = ' '.join(args) if len(args) else ''
         return launch(cmd, fixed_args)
 
     os.system('cd {} && {} {}'.format(DIRS['project'], cmd, flags))
