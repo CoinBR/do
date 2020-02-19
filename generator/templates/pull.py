@@ -3,7 +3,7 @@ CHECKOUT = 'git checkout HEAD || git checkout master'
 
 run(CHECKOUT)
 run('git submodule update --init --recursive --jobs 4')
-run([CHECKOUT, PULL, 'generator/generate.py'], cd=dirs['do'])
+run([CHECKOUT, PULL, 'generator/generate.py'], cd=DIRS['do'])
 
 
 try_launch_in_submodules('pull')
