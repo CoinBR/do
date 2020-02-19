@@ -35,9 +35,9 @@ def run(cmdz, args='', cd: str=DIRS['project']):
 
 def try_launch_in_submodules(scriptz_pathz):
 
-    def launch(proj_dir, scripts_paths):
-        do_path = os.path.join(proj_dir, 'do')
-        dq(os.system(os.path.join(do_path, script_path)) for script_path in scripts_paths)
+#    def launch(proj_dir, scripts_paths):
+#        do_path = os.path.join(proj_dir, 'do')
+#        dq(os.system(os.path.join(do_path, script_path)) for script_path in scripts_paths)
 
 
     if isinstance(scriptz_pathz, str):
@@ -52,9 +52,9 @@ def try_launch_in_submodules(scriptz_pathz):
 
 
     # always execute 'generate' script before running submodules' scripts
-    scripts_paths = ['generator/generate.py'] + scriptz_pathz
+    scripts_paths = ['do/generator/generate.py'] + scriptz_pathz
 
-    dq(launch(os.path.join(subroot, proj), scripts_paths) for proj in projs)
+    dq(run(scripts_paths, cd=os.path.join(subroot, proj) for proj in projs)
 
 
 ################################
