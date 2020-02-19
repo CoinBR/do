@@ -1,19 +1,57 @@
 #!/usr/bin/env python3
 
+import os
+from sys import argv
+from collections import deque as dq
+
 from generator.get_cfg import get_cfg, DIRS, DISTROS, LANGS
+
 
 CFG = get_cfg()
 
 def list_files(directory):
-    return [f for f in os.listdir(directory) if isfile(join(directory, f))]
+    return [f for f in os.listdir(directory) if os.path.isfile(join(directory, f))]
 
-def list_files(directory):
-    return [f for f in os.listdir(directory) if isdir(join(directory, f))]
-
-
+def list_dirs(directory):
+    return [f for f in os.listdir(directory) if os.path.isdir(join(directory, f))]
 
 
+def launch(cmd: str, args=''):
+
+    if not isinstance(args, str):
+        fixed_args = ' '.join(flags)) if len(flags) else ''
+        return launch(cmd, fixed_args)
+
+    os.system('cd {} && {} {}'.format(DIRS['project'], cmd, flags))
+    
+
+def try_launch_in_submodules(scriptz_pathz):
+
+    def launch(proj_dir, scripts_paths):
+        do_path = os.path.join(proj_dir, 'do')
+        dq(os.system(os.path.join(do_path, script_path)) for script_path in scripts_paths)
 
 
+    if isinstance(scriptz_pathz, str):
+        return try_launch_in_submodules([scriptz_pathz])
+
+    subroot = os.path.join(DIRS['project'], 'submodules')
+    if not (os.path.exists(subroot) and os.path.isdir(subroot)):
+        return
+
+    projs = [d for d in os.listdir(subroot) 
+            if os.path.isdir(os.path.join(subroot, d))]
+
+
+    # always execute 'generate' script before running submodules' scripts
+    scripts_paths = ['generator/generate.py'] + scriptz_pathz
+
+    dq(launch(os.path.join(subroot, proj), scripts_paths) for proj in projs)
+
+
+################################
+##### PREFIX ENDS   ############
+##### Script Starts ############
+################################
 
 
