@@ -9,6 +9,6 @@ try_launch_in_submodules([CHECKOUT, 'pull'])
 run([
     'git add .gitmodules',
     'git add submodules',
-    'git add do'
+    'git add do',
     'git commit -m "Update submodules" && git push origin HEAD',
  ])
