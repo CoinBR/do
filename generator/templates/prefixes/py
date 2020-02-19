@@ -27,7 +27,7 @@ def run(cmdz, args='', cd: str=DIRS['project']):
 
     run_cmd = 'cd {} && {} {}'.format(cd, cmdz, args)
 
-    print('\n + {0} {1} {0} \n'.format(12 * '*', run_cmd))
+    print('+++ ' + run_cmd)
     os.system(run_cmd)
 
 
