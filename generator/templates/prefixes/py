@@ -22,7 +22,7 @@ def run(cmd: str, args=''):
         fixed_args = ' '.join(args) if len(args) else ''
         return launch(cmd, fixed_args)
 
-    os.system('cd {} && {} {}'.format(DIRS['project'], cmd, flags))
+    os.system('cd {} && {} {}'.format(DIRS['project'], cmd, args))
     
 def try_launch_in_submodules(scriptz_pathz):
 
