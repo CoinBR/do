@@ -18,8 +18,9 @@ def list_dirs(directory):
 
 def run(cmdz, args='', cd: str=DIRS['project']):
 
+    print('cmdz')
     if not isinstance(cmdz, str):
-        dq(run(cmd, args) for cmd in cmdz)
+        dq(run(cmd, args, cd) for cmd in cmdz)
 
     if not isinstance(args, str):
         fixed_args = ' '.join(args) if len(args) else ''
