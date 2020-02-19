@@ -27,7 +27,7 @@ def run(cmdz, args='', cd: str=DIRS['project']):
 
     run_cmd = 'cd {} && {} {}'.format(cd, cmdz, args)
 
-    print('  --> ' + run_cmd)
+    print('\n  --> ' + run_cmd)
     os.system(run_cmd)
 
 
