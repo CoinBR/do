@@ -1,12 +1,10 @@
 PULL = 'git pull --recurse-submodules --jobs 4'
-CHECKOUT = 'git checkout HEAD || git checkout master'
+CHECKOUT = 'git checkout master'
 
-run(CHECKOUT)
 run('git submodule update --init --recursive --jobs 4')
 run([CHECKOUT, PULL, 'generator/generate.py'], cd=DIRS['do'])
 
-
-try_launch_in_submodules('pull')
+try_launch_in_submodules([CHECKOUT, 'pull'])
 
 run([
     'git add .gitmodules',
