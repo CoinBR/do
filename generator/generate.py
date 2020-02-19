@@ -77,7 +77,6 @@ def gen_file(sourcefilename):
 
 def gen_all():
 
-
     sourcefilenames = list(filter(is_valid_fn, list_files(DIRS['templates'])))
     dq(map(try_delete_file, make_paths(DIRS['do'], sourcefilenames, change_extension_to='')))
     dq(map(gen_file, sourcefilenames))
