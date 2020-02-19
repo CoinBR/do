@@ -6,7 +6,5 @@ run([
     'git add .gitmodules',
     'git add submodules',
     'git commit -m "Updating submodules" && git push origin HEAD',
- ]
-
-
+ ])
 
