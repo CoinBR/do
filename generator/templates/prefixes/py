@@ -28,7 +28,7 @@ def run(cmdz, args=''):
     run_cmd = 'cd {} && {} {}'.format(DIRS['project'], cmdz, args)
     print(run_cmd)
     os.system(run_cmd)
-    print('\\n' + 15 * '*' + '\\n')
+    print('\n' + 15 * '*' + '\n')
 
 def try_launch_in_submodules(scriptz_pathz):
 
