@@ -60,7 +60,7 @@ def try_run_rec(cmdz, ignore_shallow_projs=False):
     # Shallow projects are the ones without a service name.
     # In other words, projects not meant to be docker inicialized
 
-    if not(ignore_shallow_projs and CFG['service'] != ''):
+    if not(ignore_shallow_projs and CFG['service'] == ''):
         run(cmdz, ARGS)
 
     print(__main__.__file__)
