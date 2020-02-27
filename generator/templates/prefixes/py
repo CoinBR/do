@@ -24,7 +24,7 @@ def run(cmdz, args='', cd: str=DIRS['project']):
 
     if not isinstance(args, str):
         fixed_args = ' '.join(args) if len(args) else ''
-        return launch(cmdz, fixed_args)
+        return run(cmdz, fixed_args)
 
     run_cmd = 'cd {} && {} {}'.format(cd, cmdz, args)
 
