@@ -55,7 +55,7 @@ def try_launch_in_submodules(scriptz_pathz):
 
     dq(run(scripts_paths, cd=os.path.join(subroot, proj)) for proj in projs)
 
-def try_run_rec(cmdz, ignore_shallow_projs=False)
+def try_run_rec(cmdz, ignore_shallow_projs=False):
     # Shallow projects are the ones without a service name.
     # In other words, projects not meant to be docker inicialized
     if isinstance(cmdz, str):
