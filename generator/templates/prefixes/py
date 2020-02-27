@@ -64,6 +64,7 @@ def try_run_rec(cmdz, ignore_shallow_projs=False):
     if not(ignore_shallow_projs and CFG['service'] != ''):
         run(cmdz, argv)
 
+    print(__main__.__file__)
     try_launch_in_submodules(__main__.__file__)
     
 
