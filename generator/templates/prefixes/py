@@ -9,6 +9,7 @@ from generator.get_cfg import get_cfg, DIRS, DISTROS, LANGS
 
 
 CFG = get_cfg()
+ARGS = argv[1:]
 
 def list_files(directory):
     return [f for f in os.listdir(directory) if os.path.isfile(join(directory, f))]
@@ -60,7 +61,7 @@ def try_run_rec(cmdz, ignore_shallow_projs=False):
     # In other words, projects not meant to be docker inicialized
 
     if not(ignore_shallow_projs and CFG['service'] != ''):
-        run(cmdz, argv)
+        run(cmdz, ARGS)
 
     print(__main__.__file__)
     try_launch_in_submodules(__main__.__file__)
