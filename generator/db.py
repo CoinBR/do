@@ -43,7 +43,7 @@ LANGS = {
         'python': {
             'images': ['python', ],
             'extensions': ['py'],
-            'test_cmd': 'pytest',
+            'test_cmd': 'pytest -vv',
             },
 
         'node': {
