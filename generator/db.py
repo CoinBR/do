@@ -22,11 +22,15 @@ EXTRA_IMGS = {
             'lang': '',
             'distro': 'debian',
             },
-
-
+        
         'rabbitmq:3': {
             'lang': '',
             'distro': 'debian'
+            },
+        
+        'lorisleiva/laravel-docker': {
+            'lang': 'laravel',
+            'distro': 'alpine'
             },
         }
 
@@ -51,10 +55,14 @@ LANGS = {
             'extensions': ['js', 'jsx', 'ts'],
             'test_cmd': 'npm test',
             },
+        
+        'laravel': {
+            'images': ['python', ],
+            'extensions': ['php'],
+            'test_cmd': 'php artisan test',
+            },
 
         }
-
-
 
 
 DISTROS = {
